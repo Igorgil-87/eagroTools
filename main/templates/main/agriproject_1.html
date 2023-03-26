@@ -1,0 +1,328 @@
+{% extends "main/base.html" %}
+{% load static %}
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<meta name='viewport' content='width=device-width, initial-scale=1'>
+<script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+
+
+
+<style>
+body {font-family: Arial, Helvetica, sans-serif;}
+
+.navbar {
+  width: 100%;
+  background-color: #c3ccd5;
+  overflow: auto;
+}
+
+.navbar a {
+  float: left;
+  padding: 12px;
+  color: Green;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.navbar a:hover {
+  background-color: #c3ccd5;
+}
+
+.active {
+  background-color: #c3ccd5;
+}
+
+@media screen and (max-width: 500px) {
+  .navbar a {
+    float: none;
+    display: block;
+  }
+}
+</style>
+
+<div class="navbar">
+  <a class="active" href="#"><i class="fa fa-fw fa-home"></i> Início</a>
+  <a href="{% url 'news' %}"><i class='fas fa-users'></i> Equipe</a>
+  <a href="{% url 'agriproject' %}"><i class='far fa-map'></i> Áreas</a>
+  <a href="{% url 'news' %}"><i class='fas fa-leaf'></i> Safra</a>
+  <a href="{% url 'news' %}"><i class="fas fa-tractor"></i> Patrimônio</a>
+  <a href="{% url 'news' %}"><i class='far fa-money-bill-alt'></i> Financeiro</a>
+  <a href="{% url 'news' %}"><i class='fas fa-money-check'></i> Fiscal</a>
+  <a href="{% url 'news' %}"><i class='fas fa-database'></i> Estoque</a>
+  <a href="{% url 'news' %}"><i class='fas fa-hand-holding-usd'></i> Produção</a>
+  <a href="{% url 'news' %}"><i class='fas fa-chart-line'></i> Indicadores</a>
+</div>
+
+
+    <div style='width: 100%;'>
+
+    <input name="propertyCoordinates" type="text" size="40" value="'+coordsrec+'"/><br/>
+    <div id="map" style="position:fixed; left: 0%;"></div>
+ <style>
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      table {
+        font-size: 12px;
+      }
+      #map {
+        width: 1300px;
+        height: 600px;
+      }
+      #listing {
+        position: absolute;
+        width: 330px;
+        height: 470px;
+        overflow: auto;
+        left: 2px;
+        top: 0px;
+        cursor: pointer;
+        overflow-x: hidden;
+      }
+      #locationField {
+        position: absolute;
+        width: 300px;
+        height: 25px;
+        left: 350px;
+        top: 10px;
+        z-index: 5;
+        background-color: #fff;
+      }
+      #searchInput {
+        width: 100%;
+      }
+      .placeIcon {
+        width: 20px;
+        height: 34px;
+        margin: 4px;
+      }
+      .hotelIcon {
+        width: 24px;
+        height: 24px;
+      }
+      #resultsTable {
+        border-collapse: collapse;
+        width: 330px;
+      }
+      .controls {
+        border: 1px solid transparent;
+        border-radius: 2px 0 0 2px;
+        box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        height: 32px;
+        outline: none;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+      }
+      .iw_table_row {
+        height: 18px;
+      }
+      .iw_attribute_name {
+        font-weight: bold;
+        text-align: right;
+      }
+      .iw_table_icon {
+        text-align: right;
+      }
+      .iw_btn {
+        text-align: center;
+      }
+      .button {
+        display: inline-block;
+        zoom: 1; /* zoom and *display = ie7 hack for display:inline-block */
+        *display: inline;
+        vertical-align: baseline;
+        margin: 0 2px;
+        outline: none;
+        cursor: pointer;
+        text-align: center;
+        text-decoration: none;
+        font: 14px/100% Arial, Helvetica, sans-serif;
+        padding: .5em 2em .55em;
+        text-shadow: 0 1px 1px rgba(0,0,0,.3);
+        -webkit-border-radius: .5em;
+        -moz-border-radius: .5em;
+        border-radius: .5em;
+        -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.2);
+        -moz-box-shadow: 0 1px 2px rgba(0,0,0,.2);
+        box-shadow: 0 1px 2px rgba(0,0,0,.2);
+        font-size: 12px;
+        padding: .4em 1.5em .42em;
+        color: #606060;
+        border: solid 1px #b7b7b7;
+        background: #fff;
+        background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#ededed));
+        background: -moz-linear-gradient(top, #fff, #ededed);
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#ededed');
+      }
+      .button:hover {
+        text-decoration: none;
+      }
+      .button:active {
+        position: relative;
+        top: 1px;
+      }
+    </style>
+
+  <script>
+      var countryRestrict = {'country': 'AU'};
+      var MARKER_PATH = 'https://maps.gstatic.com/intl/en_us/mapfiles/marker_green';
+      var latLng = {lat: -23.168810498992872, lng: -47.473678588224836}; // 默认坐标
+      var placeholder = 'Enter a keyword';
+      var autocompleteSearchTypes = ['(cities)'];
+      var searchTypes = ['(cities)'];
+      // var hostnameRegexp = new RegExp('^https?://.+?/');
+
+      var map, places, infoWindow;
+      var markers = [];
+      var autocomplete;
+      function initMap() {
+        const map = new google.maps.Map(document.getElementById("map"), {
+          center: { lat: -23.168810498992872, lng: -47.473678588224836 },
+          mapTypeId: 'satellite',
+          scaleControl: true,
+          zoom: 17,
+           styles: [{
+                "featureType": "water",
+                "stylers": [{
+                  "saturation": 43
+                }, {
+                  "lightness": -11
+                }, {
+                  "hue": "#0088ff"
+                }]
+              }, {
+                "featureType": "road",
+                "elementType": "geometry.fill",
+                "stylers": [{
+                  "hue": "#ff0000"
+                }, {
+                  "saturation": -100
+                }, {
+                  "lightness": 99
+                }]
+              }, {
+                "featureType": "road",
+                "elementType": "geometry.stroke",
+                "stylers": [{
+                  "color": "#808080"
+                }, {
+                  "lightness": 54
+                }]
+              }, {
+                "featureType": "landscape.man_made",
+                "elementType": "geometry.fill",
+                "stylers": [{
+                  "color": "#ece2d9"
+                }]
+              }, {
+                "featureType": "poi.park",
+                "elementType": "geometry.fill",
+                "stylers": [{
+                  "color": "#ccdca1"
+                }]
+              }, {
+                "featureType": "road",
+                "elementType": "labels.text.fill",
+                "stylers": [{
+                  "color": "#767676"
+                }]
+              }, {
+                "featureType": "road",
+                "elementType": "labels.text.stroke",
+                "stylers": [{
+                  "color": "#ffffff"
+                }]
+              }, {
+                "featureType": "poi",
+                "stylers": [{
+                  "visibility": "off"
+                }]
+              }, {
+                "featureType": "landscape.natural",
+                "elementType": "geometry.fill",
+                "stylers": [{
+                  "visibility": "on"
+                }, {
+                  "color": "#b8cb93"
+                }]
+              }, {
+                "featureType": "poi.park",
+                "stylers": [{
+                  "visibility": "on"
+                }]
+              }, {
+                "featureType": "poi.sports_complex",
+                "stylers": [{
+                  "visibility": "on"
+                }]
+              }, {
+                "featureType": "poi.medical",
+                "stylers": [{
+                  "visibility": "on"
+                }]
+              }, {
+                "featureType": "poi.business",
+                "stylers": [{
+                  "visibility": "simplified"
+                }]
+              }]
+
+        });
+
+        var infoWindow = new google.maps.InfoWindow();
+         var drawingManager = new google.maps.drawing.DrawingManager({
+                drawingMode: google.maps.drawing.OverlayType.RECTANGLE,
+                drawingControl: true,
+                drawingControlOptions: {
+                  position: google.maps.ControlPosition.TOP_CENTER,
+                  drawingModes: [google.maps.drawing.OverlayType.MARKER,
+                                 google.maps.drawing.OverlayType.POLYGON,
+                                   google.maps.drawing.OverlayType.POLYLINE,
+                            google.maps.drawing.OverlayType.RECTANGLE,]
+                }
+              });
+              drawingManager.setMap(map);
+
+          google.maps.event.addListener(drawingManager, 'overlaycomplete', function (e) {
+          if (e.type !== google.maps.drawing.OverlayType.MARKER) {
+          // Switch back to non-drawing mode after drawing a shape.
+          drawingManager.setDrawingMode(null);
+          // Add an event listener that selects the newly-drawn shape when the user
+          // mouses down on it.
+          var newShape = e.overlay;
+          newShape.type = e.type;
+          google.maps.event.addListener(newShape, 'click', function (e) {
+           if (e.vertex !== undefined) {
+            if (newShape.type === google.maps.drawing.OverlayType.POLYGON) {
+             var path = newShape.getPaths().getAt(e.path);
+              path.removeAt(e.vertex);
+              if (path.length < 3) {
+               newShape.setMap(null);
+              }
+             }
+            }
+          setSelection(newShape);
+          });
+         }
+          var coords = e.overlay.getPath().getArray();
+          document.getElementById("propertyCoordinates").value = coords;
+          });
+
+      }
+
+      window.initMap = initMap;
+
+
+
+
+    </script>
+
+    <!-- Loads maps library (with places library) and then calls initMap() -->
+    <script async
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC2TLMMcMOsraPhimOIlrVjdlrJ3kShn3s&amp;region=BR&libraries=visualization,drawing,geometry,places&callback=initMap">
+    </script>
+
+

@@ -1,0 +1,51 @@
+{% load static %}
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-md navbar-light bg-light">
+	<div class="container-fluid">
+		<a class="navbar-brand" href="{% url 'main-home' %}">
+			<img id="sac-navbar-logo" src="{% static 'main/img/future-farming-technology-agriculture-science-512.png' %}">
+		</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarResponsive">
+			<ul class="navbar-nav ml-auto">
+				{% if user.is_authenticated %}
+					<li class="nav-item">
+						<a class="nav-link" href="{% url 'main-home' %}">Status</a>
+					</li>
+					{% if user.is_superuser %}
+						<li class="nav-item">
+							<a class="nav-link" href="{% url 'main-allnetworks' %}">Map</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="{% url 'main-allusers' %}">Users</a>
+						</li>
+					{% else %}
+						<li class="nav-item">
+							<a class="nav-link" href="{% url 'main-allfarmersmaps' %}">Map</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="{% url 'main-billing' %}">Billing Account</a>
+						</li>
+
+					{% endif %}
+
+					<li class="nav-item">
+						<a class="nav-link" href="{% url 'profile' %}">
+							<img class="rounded-circle" src="{{ user.profile.image.url }}">
+						</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="{% url 'logout' %}">Sign Out</a>
+					</li>
+				{% else %}
+					<li class="nav-item">
+						<a class="nav-link" href="{% url 'login' %}">Sign In</a>
+					</li>
+				{% endif %}
+			</ul>
+		</div>
+	</div>
+</nav>

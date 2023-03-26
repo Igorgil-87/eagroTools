@@ -1,0 +1,314 @@
+{% extends "main/base.html" %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<meta name='viewport' content='width=device-width, initial-scale=1'>
+<script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style>
+body {font-family: Arial, Helvetica, sans-serif;}
+
+.navbar {
+  width: 100%;
+  background-color: #c3ccd5;
+  overflow: auto;
+}
+
+.navbar a {
+  float: left;
+  padding: 12px;
+  color: Green;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.navbar a:hover {
+  background-color: #c3ccd5;
+}
+
+.active {
+  background-color: #c3ccd5;
+}
+
+@media screen and (max-width: 500px) {
+  .navbar a {
+    float: none;
+    display: block;
+  }
+}
+</style>
+<style>
+body {font-family: Arial, Helvetica, sans-serif;}
+
+form {
+  border: 3px solid #f1f1f1;
+  font-family: Arial;
+}
+
+.container {
+  padding: 20px;
+  background-color: #f1f1f1;
+}
+
+input[type=text], input[type=submit] {
+  width: 100%;
+  padding: 12px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+input[type=checkbox] {
+  margin-top: 16px;
+}
+
+input[type=submit] {
+  background-color: #04AA6D;
+  color: white;
+  border: none;
+}
+
+input[type=submit]:hover {
+  opacity: 0.8;
+}
+</style>
+<style>
+body {
+  font-family: Arial;
+}
+
+input[type=text], select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+input[type=submit] {
+  width: 100%;
+  background-color: #04AA6D;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type=submit]:hover {
+  background-color: #45a049;
+}
+
+div.container {
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+}
+</style>
+<style>
+body {font-family: Arial, Helvetica, sans-serif;}
+* {box-sizing: border-box;}
+
+/* Button used to open the contact form - fixed at the bottom of the page */
+.open-button {
+  background-color: #555;
+  color: white;
+  padding: 16px 20px;
+  border: none;
+  cursor: pointer;
+  opacity: 0.8;
+  position: fixed;
+  bottom: 23px;
+  right: 28px;
+  width: 280px;
+}
+
+/* The popup form - hidden by default */
+.form-popup {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  right: 15px;
+  border: 3px solid #f1f1f1;
+  z-index: 9;
+}
+
+/* Add styles to the form container */
+.form-container {
+  max-width: 300px;
+  padding: 10px;
+  background-color: white;
+}
+
+/* Full-width input fields */
+.form-container input[type=text], .form-container input[type=password] {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  border: none;
+  background: #f1f1f1;
+}
+
+/* When the inputs get focus, do something */
+.form-container input[type=text]:focus, .form-container input[type=password]:focus {
+  background-color: #ddd;
+  outline: none;
+}
+
+/* Set a style for the submit/login button */
+.form-container .btn {
+  background-color: #04AA6D;
+  color: white;
+  padding: 16px 20px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  margin-bottom:10px;
+  opacity: 0.8;
+}
+
+/* Add a red background color to the cancel button */
+.form-container .cancel {
+  background-color: red;
+}
+
+/* Add some hover effects to buttons */
+.form-container .btn:hover, .open-button:hover {
+  opacity: 1;
+}
+</style>
+<style>
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+  border: 1px solid #ddd;
+}
+
+th, td {
+  text-align: center;
+  padding: 16px;
+}
+
+th:first-child, td:first-child {
+  text-align: left;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2
+}
+
+.fa-check {
+  color: green;
+}
+
+.fa-remove {
+  color: red;
+}
+</style>
+<div class="navbar">
+  <a  href="{% url 'main-home' %}"><i class="fa fa-fw fa-home"></i> Início</a>
+  <a class="active" href="{% url 'createNetwork' %}"><i class='fas fa-users'></i> Equipe</a>
+  <a  href="{% url 'agriproject' %}"><i class='fas fa-globe'></i> Mapa</a>
+  <a href="{% url 'main-allfarmersmaps' %}"><i class='far fa-map'></i> Áreas</a>
+  <a href="{% url 'main-allnetworks' %}"><i class='fas fa-leaf'></i> Safra</a>
+  <a href="{% url 'main-allfarms' %}"><i class="fas fa-chess-rook"></i> Patrimônio</a>
+  <a href="{% url 'main-editFarm' %}"><i class='far fa-money-bill-alt'></i> Financeiro</a>
+  <a href="{% url 'main-addSensor' %}"><i class='fas fa-database'></i> Estoque </a>
+  <a href="{% url 'main-allusers' %}"><i class='fas fa-file'></i> Produção</a>
+  <a href="{% url 'main-deleteSensorNode' %}"><i class='fas fa-chart-line'></i> Indicadores</a>
+</div>
+
+<div class="davidboxshadows">
+	<div class="card">
+		<div class="card-header bg-primary text-white">
+			Novo Membro de equipe
+		</div>
+		<div class="card-body">
+			  <div class="container" style="background-color:white">
+				<input type="text" placeholder="Nome" name="name" required>
+				<input type="text" placeholder="Email" name="mail" required>
+				<div class="container">
+					<label for="perfil">Perfil</label>
+					<select id="perfil" name="perfil">
+					  <option value="proprietario">Proprietario</option>
+						<option value="gerente">Gerente</option>
+					  <option value="agronomo">Agrônomo</option>
+					  <option value="financeiro">Financeiro</option>
+						<option value="estoque">Estoque</option>
+					</select>
+				</div>
+			  </div>
+			<div class="content-section">
+					<div class="form-group">
+						<button class="btn btn-outline-info" type="submit">Adicionar</button>
+					</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<button class="open-button" onclick="openForm()">Detalhe Perfil</button>
+
+<div class="form-popup" id="myForm">
+  <form action="/action_page.php" class="form-container">
+    <h1>Perfis</h1>
+	<table>
+	  <tr>
+		<th style="width:50%">Perfil</th>
+		<th>Basic</th>
+		<th>Pro</th>
+	  </tr>
+	  <tr>
+		<td>Proprietário</td>
+		<td><i class="fa fa-remove"></i></td>
+		<td><i class="fa fa-check"></i></td>
+	  </tr>
+	  <tr>
+		<td>Gerente</td>
+		<td><i class="fa fa-check"></i></td>
+		<td><i class="fa fa-check"></i></td>
+	  </tr>
+	  <tr>
+		<td>Agronômico</td>
+		<td><i class="fa fa-check"></i></td>
+		<td><i class="fa fa-check"></i></td>
+	  </tr>
+	  <tr>
+		<td>Financeiro</td>
+		<td><i class="fa fa-remove"></i></td>
+		<td><i class="fa fa-check"></i></td>
+	  </tr>
+	  <tr>
+		<td>Operacional</td>
+		<td><i class="fa fa-check"></i></td>
+		<td><i class="fa fa-check"></i></td>
+	  </tr>
+	</table>
+
+    <button type="button" class="btn cancel" onclick="closeForm()">Fechar</button>
+  </form>
+</div>
+
+
+
+<script>
+function openForm() {
+  document.getElementById("myForm").style.display = "block";
+}
+
+function closeForm() {
+  document.getElementById("myForm").style.display = "none";
+}
+</script>
+{% endblock content %}

@@ -1,0 +1,464 @@
+{% extends "main/base.html" %}
+{% load static %}
+
+{% block content %}
+
+<style>
+body {font-family: Arial, Helvetica, sans-serif;}
+
+.navbar {
+  width: 100%;
+  background-color: #c3ccd5;
+  overflow: auto;
+}
+
+.navbar a {
+  float: left;
+  padding: 12px;
+  color: Green;
+  text-decoration: none;
+  font-size: 16px;
+}
+
+.navbar a:hover {
+  background-color: #c3ccd5;
+}
+
+.active {
+  background-color: #c3ccd5;
+}
+
+@media screen and (max-width: 500px) {
+  .navbar a {
+    float: none;
+    display: block;
+  }
+}
+</style>
+
+<style>
+*
+  box-sizing: border-box
+
+body
+  height: 100vh
+  font-family: 'Roboto', sans-serif
+  background: linear-gradient(to top right, #7c89d5, #f599a5)
+  font-size: 12px
+
+.center
+  position: absolute
+  display: block
+  top: 50%
+  left: 50%
+  transform: translate(-50%, -50%)
+  width: 80vw
+  height: 88vh
+  max-width: 800px
+  display: flex
+
+.inspiration
+  position: fixed
+  bottom: 0
+  right: 0
+  padding: 10px
+  text-align: center
+  text-decoration: none
+  font-family: 'Gill Sans', sans-serif
+  color: white
+
+.left
+  flex: 0 0 150px
+  width: 150px
+  height: 100%
+  background-color: white
+  color: #848697
+  border-radius: 3px 0 0 3px
+
+.logo
+  position: relative
+  top: 10px
+  height: 100px
+
+.company
+  text-align: center
+
+  .company-name
+    font-weight: bold
+    color: #333
+
+  .company-description
+    position: relative
+    margin: 10px auto
+    width: 100px
+    font-size: 10px
+
+.navigation
+  position: relative
+  display: block
+  margin-top: 50px
+
+  li
+    padding: 0px 25px
+    margin: 10px 0
+    display: flex
+    align-items: center
+    cursor: pointer
+
+    i
+      font-size: 20px
+    span
+      padding-left: 15px
+      vertical-align: super
+
+
+.right
+  flex: 1 1 auto
+  background-color: #f6f6fc
+  padding: 30px
+  border-radius: 0 3px 3px 0
+  overflow-x: hidden
+  overflow-y: auto
+
+  .title
+    font-size: 25px
+    font-weight: bold
+
+  .description
+    margin-top: 5px
+    margin-bottom: 20px
+    color: gray
+
+  .row
+    display: flex
+    margin: 10px 0 40px
+
+    &:last-child
+      margin: 10px 0 0
+
+  .column
+    flex-direction: column
+
+  .graph
+    display: inline-block
+    width: 250px
+    height: 150px
+    background-color: white
+    border-radius: 10px
+    box-shadow: 0px 0px 22px -8px #808080
+
+    .stock
+      margin: 0
+      margin-left: 20px
+      top: 5px
+
+  .graph + .graph
+    margin-left: 10px
+
+  .asset-category
+    display: flex
+
+  .category
+    flex: 1
+    display: flex
+    flex-direction: column
+    align-items: center
+
+  .asset
+    position: relative
+    display: flex
+    flex-direction: row
+    margin: 10px 0
+
+  .asset-logo
+    position: relative
+    display: flex
+    justify-content: center
+    flex: 0
+
+  .asset-logo:before
+    content: ''
+    width: 40px
+    height: 40px
+    background-color: #fff
+    transform: rotate(45deg)
+    border-radius: 10px
+
+  .asset-logo i
+    position: absolute
+    top: 50%
+    left: 50%
+    transform: translate(-50%, -50%)
+
+  .asset-name
+    color: gray
+
+
+  .sub-title
+    margin-bottom: 10px
+    color: darkblue
+
+  .half
+    flex: 1
+
+  .stock
+    position: relative
+    display: flex
+    flex-direction: row
+    align-items: center
+    height: 40px
+    padding: 5px 0
+    margin: 8px 0
+
+  .stock-logo
+    position: relative
+    display: flex
+    justify-content: center
+    flex: 0
+    margin-right: 10px
+
+  .stock-logo:before
+    content: ''
+    width: 30px
+    height: 30px
+    background-color: #555
+    transform: rotate(45deg)
+    border-radius: 7px
+
+  .stock-logo i
+    position: absolute
+    top: 50%
+    left: 50%
+    transform: translate(-50%, -50%)
+
+  .stock-info
+    margin-left: 5px
+    flex: 1
+
+  .stock-name
+    color: darkblue
+
+  .stock-fullname
+    color: gray
+
+  .stock-value
+    flex: 1
+    font-weight: bold
+    color: gray
+
+
+  .stock-logo
+    &.apple:before
+      background: gray
+    &.facebook:before
+      background: #3b5998
+    &.amazon:before
+      background: #ff9b24
+    &.twitter:before
+      background: #55acee
+    &.paypal:before
+      background: #003087
+    &.google:before
+      background: #d62d20
+
+    &.paperpillar:before
+      background: linear-gradient(to top right, rgb(120,113,255), rgb(111,234,255))
+
+    &.dandruft:before
+      background: linear-gradient(to top right, rgb(248, 135, 129), rgb(247, 198, 130))
+</style>
+<style>
+div {
+  margin-bottom: 15px;
+  padding: 4px 12px;
+}
+
+.danger {
+  background-color: #ffdddd;
+  border-left: 6px solid #f44336;
+}
+
+.success {
+  background-color: #ddffdd;
+  border-left: 6px solid #04AA6D;
+}
+
+.info {
+  background-color: #e7f3fe;
+  border-left: 6px solid #2196F3;
+}
+
+
+.warning {
+  background-color: #ffffcc;
+  border-left: 6px solid #ffeb3b;
+}
+</style>
+
+
+<div class="navbar">
+  <a  href="{% url 'main-home' %}"><i class="fa fa-fw fa-home"></i> Início</a>
+  <a href="{% url 'createNetwork' %}"><i class='fas fa-users'></i> Equipe</a>
+  <a  href="{% url 'agriproject' %}"><i class='fas fa-globe'></i> Mapa</a>
+  <a class="active" href="{% url 'main-allfarmersmaps' %}"><i class='far fa-map'></i> Áreas</a>
+  <a href="{% url 'main-allnetworks' %}"><i class='fas fa-leaf'></i> Safra</a>
+  <a href="{% url 'main-allfarms' %}"><i class="fas fa-chess-rook"></i> Patrimônio</a>
+  <a href="{% url 'main-editFarm' %}"><i class='far fa-money-bill-alt'></i> Financeiro</a>
+  <a href="{% url 'main-addSensor' %}"><i class='fas fa-database'></i> Estoque </a>
+  <a href="{% url 'main-allusers' %}"><i class='fas fa-file'></i> Produção</a>
+  <a href="{% url 'main-deleteSensorNode' %}"><i class='fas fa-chart-line'></i> Indicadores</a>
+</div>
+
+<div class="container">
+
+
+<div class="card-deck">
+  <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+    <div class="card">
+        <div class="card-body">
+            <div id="map">
+        </div>
+  </div>
+    </div>
+     </div>
+        <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
+            <div class="davidboxshadows">
+                <div class="card">
+                    <div class="card-header bg-success text-white">
+                        Informações Gerais do  Imóvel
+                    </div>
+                    <div class="card-body">
+                        <div id="sensorHealthByFarm"></div>
+                        </li>
+                        <div class="card-deck">
+                        <div class="card" style="width: 18rem;">
+                            <div class="graph">
+                              <svg viewBox="0 0 250 60" width="250" height="90">
+                                <path d="M 209.328 17.34 C 221.956 17.588 235.264 32.599 250 22.328" fill="none" vector-effect="non-scaling-stroke" stroke-width="2" stroke="rgb(243,243,250)" stroke-linejoin="miter" stroke-linecap="round" stroke-miterlimit="3"></path>
+                                <linearGradient id="_lgradient_1" x1="0%" y1="50%" x2="100%" y2="50%">
+                                  <stop offset="0%" stop-opacity="1" style="stop-color:rgb(120,113,255)"></stop>
+                                  <stop offset="100%" stop-opacity="1" style="stop-color:rgb(111,234,255)"></stop>
+                                </linearGradient>
+                                <path d=" M 0 43.634 C 5.934 43.634 11.318 51.209 17.462 51.342 C 33.219 51.683 30.603 59.567 39.187 59.868 C 46.963 60.141 50.44 44.192 60.537 43.77 C 69.126 43.77 72.129 52.461 79.739 52.433 C 90.904 52.433 94.93 38.455 106.648 39.78 C 129.082 42.317 124.556 27.606 139.157 27.177 C 153.758 26.747 158.235 44.485 171.96 44.725 C 196.438 45.155 189.782 17.1 208.248 17.1" fill="none" vector-effect="non-scaling-stroke" stroke-width="2" stroke="url(#_lgradient_1)" stroke-linejoin="miter" stroke-linecap="round" stroke-miterlimit="3"></path>
+                                <path d="M 206.649 17.218 C 206.649 15.739 207.85 14.538 209.328 14.538 C 210.807 14.538 212.008 15.739 212.008 17.218 C 212.008 18.696 210.807 19.897 209.328 19.897 C 207.85 19.897 206.649 18.696 206.649 17.218 Z" fill="rgb(111,232,255)"></path>
+                                <text transform="matrix(1,0,0,1,195,5)" style="font-family:&amp;quot;Open Sans&amp;quot;;font-weight:700;font-size:12px;font-style:normal;fill:#6fe8ff;stroke:none;">+14%</text>
+                                <div class="stock">
+                                  <div class="stock-logo paperpillar"><i class="fa fa-inverse fa-angle-double-up"></i></div>
+                                  <div class="stock-info">
+                                    <div class="stock-name">Valoração do Imóvel</div>
+                                    <div class="stock-fullname">5 anos analisados</div>
+                                  </div>
+                                </div>
+                              </svg>
+                            </div>
+                        </div>
+
+
+
+                              <div class="card">
+                              <img src="{% static 'main/img/niagara.jpg' %}" alt="Avatar" style="width:100%">
+                              <div class="container">
+                                <h4><b>Identificado Cultivo</b></h4>
+                                <p>Uva Niagara</p>
+                                  <p>5 anos analisados</p>
+                              </div>
+                            </div>
+
+                            <div id="chartContainer" style="height: 300px; width: 100%;"></div>
+
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+
+                <div class="davidboxshadows">
+                    <div class="card">
+                        <div class="card-header bg-success text-white">
+                            Risco Socio Ambiental
+                        </div>
+
+                            <div >
+                            </div>
+                                <div class="success">
+                                  <p><strong>Successo!</strong> Status do CAR</p>
+                                </div>
+
+                             <div class="danger">
+                              <p><strong>Apontamento!</strong> SEMA</p>
+                            </div>
+
+                             <div class="danger">
+                              <p><strong>Apontamento!</strong> IBAMA</p>
+                            </div>
+
+                             <div class="danger">
+                              <p><strong>Apontamento!</strong> ICMBIO</p>
+                            </div>
+
+                             <div class="danger">
+                              <p><strong>Apontamento!</strong> INCRA</p>
+                            </div>
+
+                            <div class="danger">
+                              <p><strong>Apontamento!</strong> UNIDADE DE CONSERVAÇÃO</p>
+                            </div>
+                    </div>
+                </div>
+
+        </div>
+
+        </div>
+</div>
+
+{% include "main/farmersfarms.html" %}
+<script>
+window.onload = function() {
+
+var chart = new CanvasJS.Chart("chartContainer", {
+	animationEnabled: true,
+	title: {
+		text: "Produção do Cultivo"
+	},
+	axisX: {
+		title: "Ano"
+	},
+	axisY: {
+		title: "Percentage",
+		suffix: "%",
+		includeZero: true
+	},
+	data: [{
+		type: "line",
+		name: "CPU Utilization",
+		connectNullData: true,
+		//nullDataLineDashType: "solid",
+		xValueType: "integer",
+		xValueFormatString: "0000",
+	    yValueFormatString: "#,##0.##\"%\"",
+
+		dataPoints: [
+			{ x: 2010, y: 35.939 },
+			{ x: 2011, y: 40.896 },
+			{ x: 2012, y: 56.625 },
+			{ x: 2013, y: 26.003 },
+			{ x: 2014, y: 20.376 },
+			{ x: 2015, y: 19.774 },
+			{ x: 2016, y: 23.508 },
+			{ x: 2017, y: 18.577 },
+			{ x: 2018, y: 15.918 },
+			{ x: 2019, y: 30.40 }, // Null Data
+			{ x: 2020, y: 10.314 },
+			{ x: 2021, y: 10.574 },
+			{ x: 2022, y: 14.422 }
+
+		]
+	}]
+});
+chart.render();
+
+}
+</script>
+<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+{% endblock content %}

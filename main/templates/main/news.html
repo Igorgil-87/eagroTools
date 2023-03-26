@@ -1,0 +1,251 @@
+
+{% extends "main/base.html" %}
+{% load static %}
+
+
+
+{% load static %}
+
+
+{% block title %} UI Notifications {% endblock %} 
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+        <div class="card">
+            <div class="card-header card-header-primary">
+              <h3 class="card-title">DE OLHO NO CAMPO</h3>
+              <p class="card-category">Destaque do agronegocio no
+                <a target="_blank" href="https://github.com/mouse0270">Brasil</a> e no mundo
+                <a href="https://www.linkedin.com/in/igor-henrique-nascimento-lourenco-gil-08924469/" target="_blank">siga-nos.</a>
+              </p>
+
+                  <div class="row">
+                    <div class="col-lg-3 col-md-6 col-sm-6">
+                      <div class="card card-stats">
+                        <div class="card-header card-header-warning card-header-icon">
+                          <div class="card-icon">
+                            <img class="sac-img" src="{% static 'main/img/instagram.png' %}">
+
+                          </div>
+                          <p class="card-category">Instagram</p>
+                          <h3 class="card-title">49/50
+                            <small>msg</small>
+                          </h3>
+                        </div>
+                        <div class="card-footer">
+                          <div class="stats">
+                            <i class="material-icons text-danger">warning</i>
+                            <a href="#pablo">Muitas mensagens negativas...</a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6">
+                      <div class="card card-stats">
+                        <div class="card-header card-header-success card-header-icon">
+                          <div class="card-icon">
+                            <img class="sac-img" src="{% static 'main/img/linkedin.png' %}">
+                          </div>
+                          <p class="card-category">Linkedin</p>
+                          <h3 class="card-title">34.245</h3>
+                        </div>
+                        <div class="card-footer">
+                          <div class="stats">
+                            <i class="material-icons">date_range</i> 24 horas
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6">
+                      <div class="card card-stats">
+                        <div class="card-header card-header-danger card-header-icon">
+                          <div class="card-icon">
+
+                            <img class="sac-img" src="{% static 'main/img/fake-news.png' %}">
+
+                          </div>
+                          <p class="card-category">Agrolink</p>
+                          <h3 class="card-title">75</h3>
+                        </div>
+                        <div class="card-footer">
+                          <div class="stats">
+                            <i class="material-icons">date_range</i> 24 horas
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6">
+                      <div class="card card-stats">
+                        <div class="card-header card-header-info card-header-icon">
+                          <div class="card-icon">
+                           <img class="sac-img" src="{% static 'main/img/twitter.png' %}">
+                          </div>
+                          <p class="card-category">Twitter</p>
+                          <h3 class="card-title">+245</h3>
+                        </div>
+                        <div class="card-footer">
+                          <div class="stats">
+                            <i class="material-icons">date_range</i> 24 horas
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+
+
+            </div>
+            <div class="card-body">
+              <div class="row">
+                <div class="col-md-6">
+                  <h4 class="card-title">Destaque positivo</h4>
+                  <div class="alert alert-info">
+                    <b> Twitter - </b> <span>@PauloSpitzbarth: Com a chegada de 30 navios Russo com a maior carga de fertilizantes já importada para a garantia do crescimento expoen…"</span>
+                  </div>
+                  <div class="alert alert-info">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                      <i class="material-icons">close</i>
+                    </button>
+                    <b> Twitter - </b> <span>Direita conservadora. Fechado com nosso presidente até o fim. Brasil acima de tudo e Deus acima de todos. 😎🙏.</span>
+                  </div>
+                  <div class="alert alert-info alert-with-icon" data-notify="container">
+                    <i class="material-icons" data-notify="icon">add_alert</i>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                      <i class="material-icons">close</i>
+                    </button>
+                    <span Linkedin="message">Agro energia: programa quer produtores auto suficientes em produção energética.</span>
+                  </div>
+                  <div class="alert alert-info alert-with-icon" data-notify="container">
+                    <i class="material-icons" data-notify="icon">add_alert</i>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                      <i class="material-icons">close</i>
+                    </button>
+                    <span data-notify="message">RT @RCachanosky: El que tiene subsidio de gas no puede comprar dólares. El que vendió soja a dólar soja no puede comprar dólares</span>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <h4 class="card-title">Destaque negativo</h4>
+                  <div class="alert alert-info">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                      <i class="material-icons">close</i>
+                    </button>
+                    <span>
+                      <b> Twitter - </b> A risada do @LulaOficial respondendo sobre o agro é a melhor 😂😂😂😂😂 Olha a segurança na resposta.  A maioria dos produtores é…""" ".Lucimar Dias"</span>
+                  </div>
+                  <div class="alert alert-success">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                      <i class="material-icons">close</i>
+                    </button>
+                    <span>
+                      <b> Agrolink - </b> Na segunda-feira (13), uma forte chuva de granizo atingiu algumas cidades no Sul de Minas Gerais, a rodovia Fernão Dias, teve parte da estrada encoberta de “neve” ".Aline Merladete"</span>
+                  </div>
+                  <div class="alert alert-warning">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                      <i class="material-icons">close</i>
+                    </button>
+                    <span>
+                      <b> Instagram - </b> RT @rsallesmma: A direita pela qual lutamos, há 16 anos, defende o liberalismo econômico. Vender TODAS as estatais e diminuir o tamanho do… ".@rsallesmma"</span>
+                  </div>
+                  <div class="alert alert-danger">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                      <i class="material-icons">close</i>
+                    </button>
+                    <span>
+                      <b> Linkedin - </b> As apreensões resultaram em mais de R$ 6 milhões de prejuízo aos infratores e ocorreram durante fiscalização no Porto Seco Libraport onde identificou-se insumos agrícolas importados ilegalmente da China ".Aline Merladete"</span>
+                  </div>
+                  <div class="alert alert-info">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                      <i class="material-icons">close</i>
+                    </button>
+                    <span>
+                      <b> Twitter - </b> RT @alertatotal: Depois não reclamem! @LulaOficial prometeu:\n*O MST vai dizimar o agronegócio brasileiro*\n*ICMS da gasolina vai voltar e va…" "@alertatotal"</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-12">
+              <div class="places-buttons">
+                <div class="row">
+                  <div class="col-md-6 ml-auto mr-auto text-center">
+                    <h4 class="card-title">
+                      Notícias do seu cultivo
+                      <p class="category">Clique e veja as Notícias</p>
+                    </h4>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-8 col-md-10 ml-auto mr-auto">
+                    <div class="row">
+                      <div class="col-md-4">
+                        <button class="btn btn-primary btn-block" onclick="md.showNotification('top','left')">Milho</button>
+                        <img src="https://image.ibb.co/kdEbJH/CROPS.jpg" alt="CROPS" border="0" class="btn btn-primary btn-block"/>
+
+                      </div>
+                      <div class="col-md-4">
+                        <button class="btn btn-primary btn-block" onclick="md.showNotification('top','center')">Peixes</button>
+                        <img src="https://image.ibb.co/dCeAdH/FISHERY.jpg" alt="CROPS" class="btn btn-primary btn-block"/>
+                      </div>
+                      <div class="col-md-4">
+                        <button class="btn btn-primary btn-block" onclick="md.showNotification('top','right')">Suínos</button>
+                         <img src="https://image.ibb.co/jd2VdH/PIGGERY.jpg"  class="btn btn-primary btn-block"/>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-8 col-md-10 ml-auto mr-auto">
+                    <div class="row">
+                      <div class="col-md-4">
+                        <button class="btn btn-primary btn-block" onclick="md.showNotification('bottom','left')">Frango</button>
+                        <img src="https://image.ibb.co/mD83yH/POULTRY.jpg"  class="btn btn-primary btn-block"/>
+                      </div>
+                      <div class="col-md-4">
+                        <button class="btn btn-primary btn-block" onclick="md.showNotification('bottom','center')">Arroz</button>
+                         <img src="https://image.ibb.co/bxcJXc/RICEFIELD.jpg"  class="btn btn-primary btn-block"/>
+                      </div>
+                      <div class="col-md-4">
+                        <button class="btn btn-primary btn-block" onclick="md.showNotification('bottom','right')">Fertilizante</button>
+                        <img src="https://image.ibb.co/nRjXsc/FERTILIZER.jpg" alt="CROPS" border="0" class="btn btn-primary btn-block"/>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+
+
+
+
+
+
+
+                  <!-- CONTENT AREA : JMGR-->
+
+
+              </div>
+              <!-- / CONTENT AREA : JMGR-->
+
+
+
+
+
+            </div>
+        </div>
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+
+  <script>
+    $(document).ready(function() {
+      //init DateTimePickers
+      md.initFormExtendedDatetimepickers();
+    });
+  </script>
+  
+{% endblock javascripts %}

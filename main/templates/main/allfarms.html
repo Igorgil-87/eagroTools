@@ -1,0 +1,295 @@
+{% extends "main/base.html" %}
+{% load static %}
+
+{% block content %}
+
+{% load static %}
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<meta name='viewport' content='width=device-width, initial-scale=1'>
+<script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial;
+  font-size: 17px;
+}
+
+#myVideo {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  min-width: 100%;
+  min-height: 100%;
+}
+
+.content {
+  position: fixed;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  color: #f1f1f1;
+  width: 100%;
+  padding: 20px;
+}
+
+#myBtn {
+  width: 200px;
+  font-size: 18px;
+  padding: 10px;
+  border: none;
+  background: #000;
+  color: #fff;
+  cursor: pointer;
+}
+
+#myBtn:hover {
+  background: #ddd;
+  color: black;
+}
+</style>
+
+
+<style>
+body {font-family: Arial, Helvetica, sans-serif;}
+
+.navbar {
+  width: 100%;
+  background-color: #c3ccd5;
+  overflow: auto;
+}
+
+.navbar a {
+  float: left;
+  padding: 12px;
+  color: Green;
+  text-decoration: none;
+  font-size: 16px;
+}
+
+.navbar a:hover {
+  background-color: #c3ccd5;
+}
+
+.active {
+  background-color: #c3ccd5;
+}
+
+@media screen and (max-width: 500px) {
+  .navbar a {
+    float: none;
+    display: block;
+  }
+}
+</style>
+<style>
+@import url("https://fonts.googleapis.com/css?family=Roboto");
+@-webkit-keyframes come-in {
+  0% {
+    -webkit-transform: translatey(100px);
+    transform: translatey(100px);
+    opacity: 0;
+  }
+  30% {
+    -webkit-transform: translateX(-50px) scale(0.4);
+    transform: translateX(-50px) scale(0.4);
+  }
+  70% {
+    -webkit-transform: translateX(0px) scale(1.2);
+    transform: translateX(0px) scale(1.2);
+  }
+  100% {
+    -webkit-transform: translatey(0px) scale(1);
+    transform: translatey(0px) scale(1);
+    opacity: 1;
+  }
+}
+@keyframes come-in {
+  0% {
+    -webkit-transform: translatey(100px);
+    transform: translatey(100px);
+    opacity: 0;
+  }
+  30% {
+    -webkit-transform: translateX(-50px) scale(0.4);
+    transform: translateX(-50px) scale(0.4);
+  }
+  70% {
+    -webkit-transform: translateX(0px) scale(1.2);
+    transform: translateX(0px) scale(1.2);
+  }
+  100% {
+    -webkit-transform: translatey(0px) scale(1);
+    transform: translatey(0px) scale(1);
+    opacity: 1;
+  }
+}
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  background: #eaedf2;
+  font-family: "Roboto", sans-serif;
+}
+
+.floating-container {
+  position: fixed;
+  width: 100px;
+  height: 100px;
+  bottom: 0;
+  right: 0;
+  margin: 35px 25px;
+}
+.floating-container:hover {
+  height: 300px;
+}
+.floating-container:hover .floating-button {
+  box-shadow: 0 10px 25px rgba(44, 179, 240, 0.6);
+  -webkit-transform: translatey(5px);
+  transform: translatey(5px);
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+}
+.floating-container:hover .element-container .float-element:nth-child(1) {
+  -webkit-animation: come-in 0.4s forwards 0.2s;
+  animation: come-in 0.4s forwards 0.2s;
+}
+.floating-container:hover .element-container .float-element:nth-child(2) {
+  -webkit-animation: come-in 0.4s forwards 0.4s;
+  animation: come-in 0.4s forwards 0.4s;
+}
+.floating-container:hover .element-container .float-element:nth-child(3) {
+  -webkit-animation: come-in 0.4s forwards 0.6s;
+  animation: come-in 0.4s forwards 0.6s;
+}
+.floating-container .floating-button {
+  position: absolute;
+  width: 65px;
+  height: 65px;
+  background: #2cb3f0;
+  bottom: 0;
+  border-radius: 50%;
+  left: 0;
+  right: 0;
+  margin: auto;
+  color: white;
+  line-height: 65px;
+  text-align: center;
+  font-size: 23px;
+  z-index: 100;
+  box-shadow: 0 10px 25px -5px rgba(44, 179, 240, 0.6);
+  cursor: pointer;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+}
+.floating-container .float-element {
+  position: relative;
+  display: block;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  margin: 15px auto;
+  color: white;
+  font-weight: 500;
+  text-align: center;
+  line-height: 50px;
+  z-index: 0;
+  opacity: 0;
+  -webkit-transform: translateY(100px);
+  transform: translateY(100px);
+}
+.floating-container .float-element .material-icons {
+  vertical-align: middle;
+  font-size: 16px;
+}
+.floating-container .float-element:nth-child(1) {
+  background: #42a5f5;
+  box-shadow: 0 20px 20px -10px rgba(66, 165, 245, 0.5);
+}
+.floating-container .float-element:nth-child(2) {
+  background: #4caf50;
+  box-shadow: 0 20px 20px -10px rgba(76, 175, 80, 0.5);
+}
+.floating-container .float-element:nth-child(3) {
+  background: #ff9800;
+  box-shadow: 0 20px 20px -10px rgba(255, 152, 0, 0.5);
+}
+</style>
+<div class="navbar">
+  <a  href="{% url 'main-home' %}"><i class="fa fa-fw fa-home"></i> Início</a>
+  <a href="{% url 'createNetwork' %}"><i class='fas fa-users'></i> Equipe</a>
+  <a  href="{% url 'agriproject' %}"><i class='fas fa-globe'></i> Mapa</a>
+  <a href="{% url 'main-allfarmersmaps' %}"><i class='far fa-map'></i> Áreas</a>
+  <a href="{% url 'main-allnetworks' %}"><i class='fas fa-leaf'></i> Safra</a>
+  <a class="active" href="{% url 'main-allfarms' %}"><i class="fas fa-chess-rook"></i> Patrimônio</a>
+  <a href="{% url 'main-editFarm' %}"><i class='far fa-money-bill-alt'></i> Financeiro</a>
+  <a href="{% url 'main-addSensor' %}"><i class='fas fa-database'></i> Estoque </a>
+  <a href="{% url 'main-allusers' %}"><i class='fas fa-file'></i> Produção</a>
+  <a href="{% url 'main-deleteSensorNode' %}"><i class='fas fa-chart-line'></i> Indicadores</a>
+</div>
+
+
+
+    <div class="floating-container">
+           <button class="floating-button" data-toggle="modal" data-target=".bd-example-modal-lg" >?</button>
+    </div>
+
+
+<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+        <div class="modal-footer">
+          <div class="card-deck">
+
+               <div class="card-body">
+                  <iframe src="https://prezi.com/v/embed/0s0RZ4EMrub2stzc1hri/" id="iframe_container" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen="" allow="autoplay; fullscreen" height="315" width="560"></iframe>
+               </div>
+
+          </div>
+
+      </div>
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+
+    </div>
+
+  </div>
+</div>
+
+
+<script>
+// Get the modal
+var modal = document.getElementById('id01');
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+</script>
+
+<script>
+var video = document.getElementById("myVideo");
+var btn = document.getElementById("myBtn");
+
+function myFunction() {
+  if (video.paused) {
+    video.play();
+    btn.innerHTML = "Pause";
+  } else {
+    video.pause();
+    btn.innerHTML = "Play";
+  }
+}
+</script>
+
+{% endblock content %}
+

@@ -1,0 +1,137 @@
+{% load static %}
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<meta name='viewport' content='width=device-width, initial-scale=1'>
+<script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+<!--Get your own code at fontawesome.com-->
+
+<style>
+body {font-family: Arial, Helvetica, sans-serif;}
+
+.navbar {
+  width: 100%;
+  background-color: #c3ccd5;
+  overflow: auto;
+}
+
+.navbar a {
+  float: left;
+  padding: 12px;
+  color: Green;
+  text-decoration: none;
+  font-size: 16px;
+}
+
+.navbar a:hover {
+  background-color: #c3ccd5;
+}
+
+.active {
+  background-color: #c3ccd5;
+}
+
+@media screen and (max-width: 500px) {
+  .navbar a {
+    float: none;
+    display: block;
+  }
+}
+</style>
+<style>
+#myProgress {
+  width: 100%;
+  background-color: #ddd;
+}
+
+#myBar {
+  width: 10%;
+  height: 30px;
+  background-color: #04AA6D;
+  text-align: center;
+  line-height: 30px;
+  color: white;
+}
+</style>
+<div class="navbar">
+  <a class="active" href="{% url 'main-home' %}"><i class="fa fa-fw fa-home"></i> Início</a>
+  <a href="{% url 'createNetwork' %}"><i class='fas fa-users'></i> Equipe</a>
+  <a  href="{% url 'agriproject' %}"><i class='fas fa-globe'></i> Mapa</a>
+  <a href="{% url 'main-allfarmersmaps' %}"><i class='far fa-map'></i> Áreas</a>
+  <a href="{% url 'main-allnetworks' %}"><i class='fas fa-leaf'></i> Safra</a>
+  <a href="{% url 'main-allfarms' %}"><i class="fas fa-chess-rook"></i> Patrimônio</a>
+  <a href="{% url 'main-editFarm' %}"><i class='far fa-money-bill-alt'></i> Financeiro</a>
+  <a href="{% url 'main-addSensor' %}"><i class='fas fa-database'></i> Estoque </a>
+  <a href="{% url 'main-allusers' %}"><i class='fas fa-file'></i> Produção</a>
+  <a href="{% url 'main-deleteSensorNode' %}"><i class='fas fa-chart-line'></i> Indicadores</a>
+</div>
+
+<h3>Progreção do seu Cadastro</h3>
+
+<div id="myProgress">
+  <div id="myBar">10%</div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
+            <div class="davidboxshadows">
+                <div class="card">
+                    <div class="card-header bg-success text-white">
+                        Informações Gerais
+                    </div>
+                    <div class="card-body">
+                        <div id="sensorHealthByFarm"></div>
+                        </li>
+                        <div class="card-deck">
+                            <div class="card" style="width: 18rem;">
+                              <img class='far fa-map' alt="Card image cap">
+                              <div class="card-body">
+                                <h5 class="card-title">Número de Areas</h5>
+                                <a href="#" class="btn btn-primary">Adicionar Área</a>
+                              </div>
+                            </div>
+                            <div class="card" style="width: 18rem;">
+                              <img class="fas fa-chess-rook" src="..." alt="Card image cap">
+                              <div class="card-body">
+                                <h5 class="card-title">Patrimônio</h5>
+                                <a href="#" class="btn btn-primary">Adicionar Patrimônio</a>
+                              </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+            <div class="davidboxshadows">
+                <div class="card">
+                    <div class="card-header bg-primary text-white">
+                        Safra atuais
+                    </div>
+                    <div class="card-body">
+                        <div id="sensorsstatus"></div>
+                        </li>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
+            <div class="davidboxshadows">
+                <div class="card">
+                    <div class="card-header bg-success text-white">
+                        Parcelas Pendentes
+                    </div>
+                    <div class="card-body">
+                            <div id="farmsstatus"></div></li>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

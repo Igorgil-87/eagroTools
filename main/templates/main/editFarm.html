@@ -1,0 +1,71 @@
+{% extends "main/base.html" %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<style>
+body {font-family: Arial, Helvetica, sans-serif;}
+
+.navbar {
+  width: 100%;
+  background-color: #c3ccd5;
+  overflow: auto;
+}
+
+.navbar a {
+  float: left;
+  padding: 12px;
+  color: Green;
+  text-decoration: none;
+  font-size: 16px;
+}
+
+.navbar a:hover {
+  background-color: #c3ccd5;
+}
+
+.active {
+  background-color: #c3ccd5;
+}
+
+@media screen and (max-width: 500px) {
+  .navbar a {
+    float: none;
+    display: block;
+  }
+}
+</style>
+
+<div class="navbar">
+  <a  href="{% url 'main-home' %}"><i class="fa fa-fw fa-home"></i> Início</a>
+  <a href="{% url 'createNetwork' %}"><i class='fas fa-users'></i> Equipe</a>
+  <a  href="{% url 'agriproject' %}"><i class='fas fa-globe'></i> Mapa</a>
+  <a href="{% url 'main-allfarmersmaps' %}"><i class='far fa-map'></i> Áreas</a>
+  <a href="{% url 'main-allnetworks' %}"><i class='fas fa-leaf'></i> Safra</a>
+  <a  href="{% url 'main-allfarms' %}"><i class="fas fa-chess-rook"></i> Patrimônio</a>
+  <a class="active" href="{% url 'main-editFarm' %}"><i class='far fa-money-bill-alt'></i> Financeiro</a>
+  <a href="{% url 'main-addSensor' %}"><i class='fas fa-database'></i> Estoque </a>
+  <a href="{% url 'main-allusers' %}"><i class='fas fa-file'></i> Produção</a>
+  <a href="{% url 'main-deleteSensorNode' %}"><i class='fas fa-chart-line'></i> Indicadores</a>
+</div>
+<div class="davidboxshadows">
+	<div class="card">
+		<div class="card-header bg-primary text-white">
+			Edit Farm : {{ farmid }}
+		</div>
+		<div class="card-body">
+			<div class="content-section">
+				<form method="POST">
+					{% csrf_token %}
+					<fieldset class="form-group">
+						{{ form | crispy }}
+					</fieldset>
+					<div class="form-group">
+						<button class="btn btn-outline-info" type="submit">Submit</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+
+{% endblock content %}

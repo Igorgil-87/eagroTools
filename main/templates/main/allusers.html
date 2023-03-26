@@ -1,0 +1,372 @@
+{% extends "main/base.html" %}
+{% load static %}
+
+{% block content %}
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<meta name='viewport' content='width=device-width, initial-scale=1'>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<style>
+body {font-family: Arial, Helvetica, sans-serif;}
+
+.navbar {
+  width: 100%;
+  background-color: #c3ccd5;
+  overflow: auto;
+}
+
+.navbar a {
+  float: left;
+  padding: 12px;
+  color: Green;
+  text-decoration: none;
+  font-size: 16px;
+}
+
+.navbar a:hover {
+  background-color: #c3ccd5;
+}
+
+.active {
+  background-color: #c3ccd5;
+}
+
+@media screen and (max-width: 500px) {
+  .navbar a {
+    float: none;
+    display: block;
+  }
+}
+</style>
+
+<style>
+@import url("https://fonts.googleapis.com/css?family=Roboto");
+@-webkit-keyframes come-in {
+  0% {
+    -webkit-transform: translatey(100px);
+    transform: translatey(100px);
+    opacity: 0;
+  }
+  30% {
+    -webkit-transform: translateX(-50px) scale(0.4);
+    transform: translateX(-50px) scale(0.4);
+  }
+  70% {
+    -webkit-transform: translateX(0px) scale(1.2);
+    transform: translateX(0px) scale(1.2);
+  }
+  100% {
+    -webkit-transform: translatey(0px) scale(1);
+    transform: translatey(0px) scale(1);
+    opacity: 1;
+  }
+}
+@keyframes come-in {
+  0% {
+    -webkit-transform: translatey(100px);
+    transform: translatey(100px);
+    opacity: 0;
+  }
+  30% {
+    -webkit-transform: translateX(-50px) scale(0.4);
+    transform: translateX(-50px) scale(0.4);
+  }
+  70% {
+    -webkit-transform: translateX(0px) scale(1.2);
+    transform: translateX(0px) scale(1.2);
+  }
+  100% {
+    -webkit-transform: translatey(0px) scale(1);
+    transform: translatey(0px) scale(1);
+    opacity: 1;
+  }
+}
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  background: #eaedf2;
+  font-family: "Roboto", sans-serif;
+}
+
+.floating-container {
+  position: fixed;
+  width: 100px;
+  height: 100px;
+  bottom: 0;
+  right: 0;
+  margin: 35px 25px;
+}
+.floating-container:hover {
+  height: 300px;
+}
+.floating-container:hover .floating-button {
+  box-shadow: 0 10px 25px rgba(44, 179, 240, 0.6);
+  -webkit-transform: translatey(5px);
+  transform: translatey(5px);
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+}
+.floating-container:hover .element-container .float-element:nth-child(1) {
+  -webkit-animation: come-in 0.4s forwards 0.2s;
+  animation: come-in 0.4s forwards 0.2s;
+}
+.floating-container:hover .element-container .float-element:nth-child(2) {
+  -webkit-animation: come-in 0.4s forwards 0.4s;
+  animation: come-in 0.4s forwards 0.4s;
+}
+.floating-container:hover .element-container .float-element:nth-child(3) {
+  -webkit-animation: come-in 0.4s forwards 0.6s;
+  animation: come-in 0.4s forwards 0.6s;
+}
+.floating-container .floating-button {
+  position: absolute;
+  width: 65px;
+  height: 65px;
+  background: #2cb3f0;
+  bottom: 0;
+  border-radius: 50%;
+  left: 0;
+  right: 0;
+  margin: auto;
+  color: white;
+  line-height: 65px;
+  text-align: center;
+  font-size: 23px;
+  z-index: 100;
+  box-shadow: 0 10px 25px -5px rgba(44, 179, 240, 0.6);
+  cursor: pointer;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+}
+.floating-container .float-element {
+  position: relative;
+  display: block;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  margin: 15px auto;
+  color: white;
+  font-weight: 500;
+  text-align: center;
+  line-height: 50px;
+  z-index: 0;
+  opacity: 0;
+  -webkit-transform: translateY(100px);
+  transform: translateY(100px);
+}
+.floating-container .float-element .material-icons {
+  vertical-align: middle;
+  font-size: 16px;
+}
+.floating-container .float-element:nth-child(1) {
+  background: #42a5f5;
+  box-shadow: 0 20px 20px -10px rgba(66, 165, 245, 0.5);
+}
+.floating-container .float-element:nth-child(2) {
+  background: #4caf50;
+  box-shadow: 0 20px 20px -10px rgba(76, 175, 80, 0.5);
+}
+.floating-container .float-element:nth-child(3) {
+  background: #ff9800;
+  box-shadow: 0 20px 20px -10px rgba(255, 152, 0, 0.5);
+}
+</style>
+
+<style>
+.button {
+  background-color: #00BFFF; /* Green */
+  border: none;
+  color: white;
+  padding: 1px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 2px 1px;
+  cursor: pointer;
+}
+
+.button1 {border-radius: 2px;}
+.button2 {border-radius: 4px;}
+.button3 {border-radius: 8px;}
+.button4 {border-radius: 12px;}
+.button5 {border-radius: 50%;}
+</style>
+
+<style>
+body {font-family: Arial;}
+
+/* Style the tab */
+.tab {
+  overflow: hidden;
+  border: 1px solid #ccc;
+  background-color: #f1f1f1;
+}
+
+/* Style the buttons inside the tab */
+.tab button {
+  background-color: inherit;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+  font-size: 17px;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+  background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+  background-color: #ccc;
+}
+
+/* Style the tab content */
+.tabcontent {
+  display: none;
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  border-top: none;
+}
+</style>
+
+
+<div class="navbar">
+  <a  href="{% url 'main-home' %}"><i class="fa fa-fw fa-home"></i> Início</a>
+  <a href="{% url 'createNetwork' %}"><i class='fas fa-users'></i> Equipe</a>
+  <a  href="{% url 'agriproject' %}"><i class='fas fa-globe'></i> Mapa</a>
+  <a href="{% url 'main-allfarmersmaps' %}"><i class='far fa-map'></i> Áreas</a>
+  <a href="{% url 'main-allnetworks' %}"><i class='fas fa-leaf'></i> Safra</a>
+  <a  href="{% url 'main-allfarms' %}"><i class="fas fa-chess-rook"></i> Patrimônio</a>
+  <a  href="{% url 'main-editFarm' %}"><i class='far fa-money-bill-alt'></i> Financeiro</a>
+  <a  href="{% url 'main-addSensor' %}"><i class='fas fa-database'></i> Estoque </a>
+  <a class="active" href="{% url 'main-allusers' %}"><i class='fas fa-file'></i> Produção</a>
+  <a href="{% url 'main-deleteSensorNode' %}"><i class='fas fa-chart-line'></i> Indicadores</a>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
+            <div class="davidboxshadows">
+                <div class="card">
+                    <div class="card-header bg-success text-white">
+                        Silos na Propriedade
+
+                    </div>
+                       <button type="button" class="btn btn-primary">Enviar</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+            <div class="davidboxshadows">
+                <div class="card">
+                    <div class="card-header bg-success text-white">
+                        Silos Terceiros
+                    </div>
+                     <button type="button" class="btn btn-primary">Enviar</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="davidboxshadows">
+  <div class="card">
+    <div class="card-header bg-primary text-white">
+      Movimentações da Safra
+    </div>
+    <div class="card-body">
+
+        <div class="tab">
+          <button class="tablinks" onclick="openCity(event, 'London')">Estoque</button>
+          <button class="tablinks" onclick="openCity(event, 'Paris')">Movimentações</button>
+          <button class="tablinks" onclick="openCity(event, 'Tokyo')">Acordo de Movimentações</button>
+            <button class="tablinks" onclick="openCity(event, 'HIST')">Histórico das Movimentações</button>
+        </div>
+
+        <div id="London" class="tabcontent">
+          <h3>Estoque</h3>
+          <p>Estoque das commodites para venda.</p>
+
+        </div>
+
+        <div id="Paris" class="tabcontent">
+          <h3>Movimentações</h3>
+          <p>Movimentação da safra para comercialização.</p>
+        </div>
+
+        <div id="Tokyo" class="tabcontent">
+          <h3>Acordo de Movimentações</h3>
+          <p>Acordo com vendedor e comprador de commodite.</p>
+        </div>
+
+        <div id="HIST" class="tabcontent">
+          <h3>Histórico das Movimentações</h3>
+          <p>Histórico de movimentaçõe de commodites para venda.</p>
+        </div>
+
+
+    </div>
+  </div>
+</div>
+
+    <div class="floating-container">
+           <button class="floating-button" data-toggle="modal" data-target=".bd-example-modal-lg" >+</button>
+    </div>
+
+    <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+        <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+        <button type="button" class="btn btn-primary">Enviar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// Get the modal
+var modal = document.getElementById('id01');
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+</script>
+
+<script>
+    $(document).ready(function() {
+        $('#allusers').DataTable( {
+            "pagingType": "full_numbers"
+        } );
+    } );
+</script>
+<script>
+function openCity(evt, cityName) {
+  var i, tabcontent, tablinks;
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablinks");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" active", "");
+  }
+  document.getElementById(cityName).style.display = "block";
+  evt.currentTarget.className += " active";
+}
+</script>
+
+{% endblock content %}

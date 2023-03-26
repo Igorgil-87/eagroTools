@@ -1,0 +1,260 @@
+{% extends "main/base.html" %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block content %}
+
+<style xmlns="http://www.w3.org/1999/html">
+body {font-family: Arial, Helvetica, sans-serif;}
+
+.navbar {
+  width: 100%;
+  background-color: #c3ccd5;
+  overflow: auto;
+}
+
+.navbar a {
+  float: left;
+  padding: 10px;
+  color: Green;
+  text-decoration: none;
+  font-size: 16px;
+}
+
+.navbar a:hover {
+  background-color: #c3ccd5;
+}
+
+.active {
+  background-color: #c3ccd5;
+}
+.card button {
+  border: none;
+  outline: 0;
+  padding: 6px;
+  color: white;
+  background-color: #000;
+  text-align: center;
+  cursor: pointer;
+  width: 100%;
+  font-size: 12px;
+}
+@media screen and (max-width: 500px) {
+  .navbar a {
+    float: none;
+    display: block;
+  }
+}
+
+</style>
+
+<style>
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.flip-card {
+  background-color: transparent;
+  width: 300px;
+  height: 300px;
+  perspective: 1000px;
+      font-size: 14px;
+      font-size: 14px;
+}
+
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+      font-size: 14px;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+  box-shadow: 0 4px 6px 0 rgba(0,0,0,0.2);
+}
+
+.flip-card:hover .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+.flip-card-front, .flip-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+    font-size: 14px;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+.flip-card-front {
+  background-color: #bbb;
+  color: black;
+  font-size: 8px;
+}
+.flip-card button {
+  border: none;
+  outline: 0;
+  padding: 4px;
+  color: white;
+  background-color: #000;
+  text-align: center;
+  cursor: pointer;
+  width: 100%;
+  font-size: 8px;
+}
+.flip-card-back {
+  background-color: #2980b9;
+  color: white;
+      font-size: 14px;
+  transform: rotateY(180deg);
+}
+@media screen and (max-width: 500px) {
+  .navbar a {
+    float: none;
+    display: block;
+  }
+</style>
+
+
+<div class="navbar">
+  <a  href="{% url 'main-home' %}"><i class="fa fa-fw fa-home"></i> Início</a>
+  <a href="{% url 'createNetwork' %}"><i class='fas fa-users'></i> Equipe</a>
+  <a  href="{% url 'agriproject' %}"><i class='fas fa-globe'></i> Mapa</a>
+  <a href="{% url 'main-allfarmersmaps' %}"><i class='far fa-map'></i> Áreas</a>
+  <a href="{% url 'main-allnetworks' %}"><i class='fas fa-leaf'></i> Safra</a>
+  <a  href="{% url 'main-allfarms' %}"><i class="fas fa-chess-rook"></i> Patrimônio</a>
+  <a  href="{% url 'main-editFarm' %}"><i class='far fa-money-bill-alt'></i> Financeiro</a>
+  <a  href="{% url 'main-addSensor' %}"><i class='fas fa-database'></i> Estoque </a>
+  <a href="{% url 'main-allusers' %}"><i class='fas fa-file'></i> Produção</a>
+  <a class="active"  href="{% url 'main-deleteSensorNode' %}"><i class='fas fa-chart-line'></i> Indicadores</a>
+</div>
+
+<div class="card-deck">
+ <div class="card">
+   <div class="card-body">
+        <div class="flip-card">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <img src="{% static 'main/img/ciclo-de-producao-agricola.jpeg' %}" class="card-img-top" alt="Avatar" style="width:300px;height:300px;">
+          </div>
+          <div class="flip-card-back">
+            <h1>Produção</h1>
+            <p>Entender realmente o quanto é necessário investir a fim de gerar resultados no campo.</p>
+          </div>
+        </div>
+        </div>
+     <div class="card-body">
+       <p><button><i class='fas fa-chart-line'></i> VER INDICADOR </button></p>
+      <p class="card-text"><small class="text-muted">Atualizado 3 min atrás</small></p>
+    </div>
+   </div>
+  </div>
+
+ <div class="card">
+   <div class="card-body">
+        <div class="flip-card">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <img src="{% static 'main/img/Avaliação-de-Risco-Socioambiental.jpg' %}" class="card-img-top" alt="Avatar" style="width:300px;height:300px;">
+          </div>
+          <div class="flip-card-back">
+        <h1>Risco Socioambiental</h1>
+        <p>Critérios mínimos para a concessão de crédito e asseguram que os projetos financiados sejam realizados de forma responsável do ponto de vista socioambiental.</p>
+          </div>
+        </div>
+        </div>
+     <div class="card-body">
+       <p><button><i class='fas fa-chart-line'></i> VER INDICADOR </button></p>
+      <p class="card-text"><small class="text-muted">Atualizado 3 min atrás</small></p>
+    </div>
+   </div>
+  </div>
+
+
+   <div class="card">
+   <div class="card-body">
+        <div class="flip-card">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <img src="{% static 'main/img/patrimonio.jpg' %}" class="card-img-top" alt="Avatar" style="width:300px;height:300px;">
+          </div>
+          <div class="flip-card-back">
+        <h1>Patrimônio</h1>
+        <p>O terreno e equipamentos agrícolas em que a lavoura está instalada significa um investimento no negócio.</p>
+          </div>
+        </div>
+        </div>
+     <div class="card-body">
+       <p><button><i class='fas fa-chart-line'></i> VER INDICADOR </button></p>
+      <p class="card-text"><small class="text-muted">Atualizado 3 min atrás</small></p>
+    </div>
+   </div>
+  </div>
+</div>
+
+
+<div class="card-deck">
+
+  <div class="card">
+   <div class="card-body">
+        <div class="flip-card">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <img src="{% static 'main/img/Relatorio_Sustentabilidade.jpeg' %}" class="card-img-top" alt="Avatar" style="width:300px;height:300px;">
+          </div>
+          <div class="flip-card-back">
+        <h1>Relatório de Sustentabilidade</h1>
+        <p>Atuação e desempenho no âmbito ambiental e econômico.</p>
+          </div>
+        </div>
+        </div>
+     <div class="card-body">
+       <p><button><i class='fas fa-chart-line'></i> VER INDICADOR </button></p>
+      <p class="card-text"><small class="text-muted">Atualizado 3 min atrás</small></p>
+    </div>
+   </div>
+  </div>
+
+  <div class="card">
+   <div class="card-body">
+        <div class="flip-card">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <img src="{% static 'main/img/controle-sob-estoque.jpg' %}" class="card-img-top" alt="Avatar" style="width:300px;height:300px;">
+          </div>
+          <div class="flip-card-back">
+        <h1>Controle de Estoque</h1>
+        <p>A compra de insumos é um momento estratégico para a próxima safra.</p>
+          </div>
+        </div>
+        </div>
+     <div class="card-body">
+       <p><button><i class='fas fa-chart-line'></i> VER INDICADOR </button></p>
+      <p class="card-text"><small class="text-muted">Atualizado 3 min atrás</small></p>
+    </div>
+   </div>
+  </div>
+
+  <div class="card">
+   <div class="card-body">
+        <div class="flip-card">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <img src="{% static 'main/img/silos.jpg' %}" class="card-img-top" alt="Avatar" style="width:300px;height:300px;">
+          </div>
+          <div class="flip-card-back">
+        <h1>Silos</h1>
+        <p>Proporcionar proteção contra os elementos para aumentar a vida útil dos grãos armazenados.</p>
+          </div>
+        </div>
+        </div>
+     <div class="card-body">
+       <p><button><i class='fas fa-chart-line'></i> VER INDICADOR </button></p>
+      <p class="card-text"><small class="text-muted">Atualizado 3 min atrás</small></p>
+    </div>
+   </div>
+  </div>
+
+
+
+</div>
+{% endblock content %}
